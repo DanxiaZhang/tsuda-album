@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>津田様 卒業記念 ～富士会議での思い出～ - 富士会議</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+            background: #000;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== 音楽開始オーバーレイ（夜空/Dreams テーマ） ===== */
+        .music-start-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center,
+                #1a1a3e 0%,
+                #0d0d2b 40%,
+                #050510 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            overflow: hidden;
+        }
+
+        /* 星のキラキラ */
+        .music-start-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+                radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.7) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.95) 0%, transparent 100%),
+                radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 70% 25%, rgba(255,255,255,0.85) 0%, transparent 100%),
+                radial-gradient(1px 1px at 85% 50%, rgba(255,255,255,0.75) 0%, transparent 100%),
+                radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.65) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 60% 80%, rgba(255,255,255,0.9) 0%, transparent 100%),
+                radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.8) 0%, transparent 100%),
+                radial-gradient(1px 1px at 35% 90%, rgba(255,255,255,0.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 5% 50%, rgba(200,200,255,0.8) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 80% 70%, rgba(200,200,255,0.9) 0%, transparent 100%),
+                radial-gradient(1px 1px at 48% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 72% 88%, rgba(255,255,255,0.75) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 20% 20%, rgba(255,240,200,0.9) 0%, transparent 100%),
+                radial-gradient(1px 1px at 95% 35%, rgba(255,240,200,0.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 65% 5%, rgba(255,255,255,0.85) 0%, transparent 100%);
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* やわらかい光の輪 */
+        .music-start-overlay::after {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            top: 50%; left: 50%;
+            margin-left: -300px; margin-top: -300px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+                rgba(150, 120, 255, 0.08) 0%,
+                rgba(100, 80, 200, 0.05) 40%,
+                transparent 70%);
+            animation: glowPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        .music-start-box {
+            background: rgba(15, 15, 40, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 60px 80px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow:
+                0 0 60px rgba(120, 100, 255, 0.2),
+                0 30px 80px rgba(0,0,0,0.6),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(180, 160, 255, 0.2);
+            animation: slideUpBox 0.8s ease, float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes slideUpBox {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 惑星リング装飾（ボックス背後・楕円軌道） */
+        .music-start-box::before {
+            content: '';
+            position: absolute;
+            width: 160%; height: 160%;
+            top: -30%; left: -30%;
+            border-radius: 50%;
+            border: 1px solid rgba(160, 130, 255, 0.25);
+            box-shadow:
+                0 0 0 14px rgba(120, 90, 220, 0.06),
+                0 0 0 28px rgba(100, 70, 200, 0.04),
+                0 0 0 42px rgba(80, 50, 180, 0.025),
+                0 0 0 56px rgba(60, 30, 160, 0.015);
+            animation: ringRotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes ringRotate {
+            0%   { transform: rotate(0deg)   scaleX(1.7) scaleY(0.35); }
+            100% { transform: rotate(360deg) scaleX(1.7) scaleY(0.35); }
+        }
+
+        .music-start-box h2 {
+            background: linear-gradient(135deg, #c8b4ff 0%, #a78bfa 40%, #e0d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            line-height: 1.6;
+        }
+
+        .music-start-box .subtitle {
+            color: rgba(200, 180, 255, 0.8);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+
+        .music-start-box p {
+            color: rgba(220, 210, 255, 0.7);
+            font-size: 1em;
+            margin-bottom: 35px;
+            line-height: 2;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .music-start-button {
+            background: linear-gradient(135deg, #7c5cd8 0%, #9b7ff0 50%, #b8a0f8 100%);
+            background-size: 200% 200%;
+            color: white;
+            border: none;
+            padding: 16px 56px;
+            font-size: 1.1em;
+            font-weight: 400;
+            letter-spacing: 3px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 30px rgba(124,92,216,0.5), 0 8px 25px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .music-start-button::before {
+            content: '♪';
+            position: absolute;
+            left: 22px;
+            font-size: 1.1em;
+            opacity: 0.8;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .music-start-button:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 45px rgba(124,92,216,0.7), 0 12px 35px rgba(0,0,0,0.5);
+        }
+
+        /* ===== スライドショー ===== */
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            background: #000;
+        }
+
+        .slide.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.8);
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .slide-caption h3 {
+            font-size: 1.4em;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* ===== プログレスバー ===== */
+        .progress-bar {
+            position: fixed;
+            bottom: 0; left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c5cd8, #b8a0f8);
+            width: 0%;
+            transition: width linear;
+            z-index: 500;
+        }
+
+        /* ===== スライドインジケーター ===== */
+        .slide-indicators {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 500;
+        }
+
+        .indicator {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .indicator.active {
+            background: #9b7ff0;
+            transform: scale(1.4);
+        }
+
+        /* ===== ナビゲーションボタン ===== */
+        .nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: rgba(0,0,0,0.3);
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 500;
+            user-select: none;
+            border: none;
+        }
+
+        .nav-btn:hover { background: rgba(124,92,216,0.7); }
+        .nav-prev { left: 20px; }
+        .nav-next { right: 20px; }
+
+        /* ===== 再生/一時停止ボタン ===== */
+        .play-pause-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 600;
+            background: linear-gradient(135deg, #7c5cd8, #9b7ff0);
+            border-radius: 50%;
+            width: 60px; height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(124,92,216,0.5), 0 10px 30px rgba(0,0,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+        }
+
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .play-pause-btn svg {
+            width: 28px; height: 28px;
+            fill: white;
+        }
+
+        /* ===== スライドカウンター ===== */
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 1em;
+            letter-spacing: 1px;
+            z-index: 500;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+        }
+
+        /* ===== タイトルスライド（夜空テーマ） ===== */
+        .title-slide {
+            background: radial-gradient(ellipse at center,
+                #1a1a3e 0%, #0d0d2b 50%, #050510 100%);
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .title-slide h1 {
+            background: linear-gradient(135deg, #c8b4ff 0%, #a78bfa 40%, #e0d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .title-slide p {
+            color: rgba(200, 180, 255, 0.75);
+            font-size: 1.1em;
+            text-align: center;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .title-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180,160,255,0.6), transparent);
+        }
+
+        /* ===== お礼メールスライド ===== */
+        .letter-slide {
+            background: radial-gradient(ellipse at center,
+                #1a1a3e 0%, #0d0d2b 50%, #050510 100%);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .letter-box {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(15, 15, 40, 0.85);
+            border: 1px solid rgba(180,160,255,0.2);
+            border-radius: 20px;
+            padding: 50px 60px;
+            box-shadow: 0 0 60px rgba(120,100,255,0.15), 0 20px 60px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .letter-box h2 {
+            color: rgba(200, 180, 255, 0.95);
+            font-size: 1.4em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 35px;
+            text-shadow: 0 0 20px rgba(160,130,255,0.5);
+        }
+
+        .letter-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180,160,255,0.5), transparent);
+            margin: 25px auto;
+        }
+
+        .letter-body {
+            color: rgba(220, 210, 255, 0.85);
+            font-size: 0.98em;
+            line-height: 2.2;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .letter-body p {
+            margin-bottom: 1.2em;
+        }
+
+        .letter-sign {
+            color: rgba(200, 180, 255, 0.7);
+            font-size: 0.9em;
+            text-align: right;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            line-height: 2;
+        }
+
+        /* ===== 星アニメーション（落ちる星＋キラキラ） ===== */
+        /* 落ちる星（黄色） */
+        .falling-star {
+            position: fixed;
+            top: -20px;
+            pointer-events: none;
+            z-index: 400;
+            animation: fallStar linear forwards;
+        }
+
+        @keyframes fallStar {
+            0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 1; }
+            80%  { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(540deg) scale(0.6); opacity: 0; }
+        }
+
+        /* キラキラ光る星（大きめ） */
+        .twinkle-star {
+            position: fixed;
+            pointer-events: none;
+            z-index: 400;
+            animation: sparkleStar ease-in-out infinite;
+        }
+
+        @keyframes sparkleStar {
+            0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+            40%      { opacity: 1; transform: scale(1.3) rotate(15deg); }
+            60%      { opacity: 0.8; transform: scale(1.1) rotate(-10deg); }
+        }
+
+        @media (max-width: 768px) {
+            .music-start-box {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            .music-start-box h2 { font-size: 1.8em; }
+            .nav-btn { width: 44px; height: 44px; font-size: 28px; }
+            .title-slide h1 { font-size: 1.8em; }
+            .letter-box { padding: 30px 24px; }
+            .letter-box h2 { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 音楽開始オーバーレイ -->
+    <div class="music-start-overlay" id="musicStartOverlay">
+        <div class="music-start-box">
+            <h2>津田様へ<br>富士会議<br>卒業記念</h2>
+            <div class="subtitle">～ 思い出の軌跡 ～</div>
+            <p>思い出のメロディーと共に<br>特別な時間をお届けします</p>
+            <button class="music-start-button" onclick="startAlbum()">
+                思い出の扉
+            </button>
+        </div>
+    </div>
+
+    <!-- BGM -->
+    <audio id="bgMusic" loop>
+        <source src="../music/bensound-dreams.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- スライドショー本体 -->
+    <div class="slideshow-wrapper" id="slideshowWrapper">
+
+        <!-- スライド 0: タイトル -->
+        <div class="slide title-slide active" id="slide-0">
+            <div class="title-divider"></div>
+            <h1>津田様<br>卒業記念アルバム</h1>
+            <p>～ 富士会議での思い出を込めて ～</p>
+            <div class="title-divider"></div>
+        </div>
+
+        <!-- スライド 1〜10: 写真 -->
+        <div class="slide" id="slide-1">
+            <img src="../photos/DSC01335.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-2">
+            <img src="../photos/DSC01350.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-3">
+            <img src="../photos/DSC01357.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-4">
+            <img src="../photos/DSC08502.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-5">
+            <img src="../photos/DSC08510.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-6">
+            <img src="../photos/IMG_0209.jpg" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-7">
+            <img src="../photos/IMG_0520.jpg" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-8">
+            <img src="../photos/IMG_0527.jpg" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-9">
+            <img src="../photos/IMG_8346.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+        <div class="slide" id="slide-10">
+            <img src="../photos/IMG_8347.JPG" alt="富士会議の思い出">
+            <div class="slide-caption"><h3>富士会議の思い出</h3></div>
+        </div>
+
+        <!-- スライド 11: エンディングタイトル -->
+        <div class="slide title-slide" id="slide-11">
+            <div class="title-divider"></div>
+            <h1>津田様<br>ありがとうございました</h1>
+            <p>2020年 ご入会 ／ 2023年〜 世話人ご担当</p>
+            <div class="title-divider"></div>
+        </div>
+
+        <!-- スライド 12: お礼メール -->
+        <div class="slide letter-slide" id="slide-12">
+            <div class="letter-box">
+                <h2>～ 感謝のメッセージ ～</h2>
+                <div class="letter-divider"></div>
+                <div class="letter-body">
+                    <p>津田 様</p>
+                    <p>
+                        いつも大変お世話になっております。<br>
+                        富士会議事務局でございます。
+                    </p>
+                    <p>
+                        この度は、津田様が富士会議を卒業されるとのこと、<br>
+                        長年にわたるご貢献に心より感謝申し上げます。
+                    </p>
+                    <p>
+                        津田様は2020年に富士会議の新メンバーとしてご参加いただき、<br>
+                        2023年からは世話人として、私たちと共に富士会議を支えてくださいました。
+                    </p>
+                    <p>
+                        世話人としての津田様のご尽力とお心遣いにより、<br>
+                        富士会議は多くの参加者にとって、かけがえのない学びと交流の場となり、その功績は計り知れません。
+                    </p>
+                    <p>
+                        津田様の新しい門出を心よりお祝い申し上げますとともに、<br>
+                        今後のご活躍とご健康をお祈りしております。
+                    </p>
+                    <p>本当にありがとうございました。</p>
+                </div>
+                <div class="letter-divider"></div>
+                <div class="letter-sign">
+                    天城有識者会議<br>
+                    富士会議 事務局一同<br>
+                    2026年7月
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- スライドカウンター -->
+    <div class="slide-counter" id="slideCounter">1 / 13</div>
+
+    <!-- ナビゲーションボタン -->
+    <button class="nav-btn nav-prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="nav-btn nav-next" onclick="changeSlide(1)">&#10095;</button>
+
+    <!-- インジケーター -->
+    <div class="slide-indicators" id="indicators"></div>
+
+    <!-- プログレスバー -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 再生/一時停止ボタン -->
+    <button class="play-pause-btn" id="playPauseBtn" onclick="toggleSlideshow()">
+        <svg id="pauseIcon" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+        <svg id="playIcon" style="display:none;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+
+    <script>
+        const TOTAL_SLIDES = 13;
+        // 1枚あたりの表示時間（ミリ秒）
+        // bensound-dreams は約120BPMのゆったりした曲
+        // 2小節（約4秒）ごとに切り替え
+        const SLIDE_DURATION = 5000;
+
+        let currentSlide = 0;
+        let slideshowTimer = null;
+        let progressTimer = null;
+        let isPlaying = false;
+        let slideshowStarted = false;
+
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.6;
+
+        // インジケーター生成
+        function buildIndicators() {
+            const container = document.getElementById('indicators');
+            for (let i = 0; i < TOTAL_SLIDES; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'indicator' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                container.appendChild(dot);
+            }
+        }
+
+        // スライド切り替え
+        function goToSlide(index) {
+            // 現在スライドを非表示
+            const current = document.getElementById('slide-' + currentSlide);
+            current.classList.remove('active');
+            current.style.position = 'absolute';
+
+            currentSlide = (index + TOTAL_SLIDES) % TOTAL_SLIDES;
+
+            // 新しいスライドを表示
+            const next = document.getElementById('slide-' + currentSlide);
+            next.style.position = 'relative';
+            next.classList.add('active');
+
+            // インジケーター更新
+            document.querySelectorAll('.indicator').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+
+            // カウンター更新
+            document.getElementById('slideCounter').textContent =
+                (currentSlide + 1) + ' / ' + TOTAL_SLIDES;
+
+            // プログレスバーリセット
+            startProgressBar();
+        }
+
+        function changeSlide(dir) {
+            clearTimeout(slideshowTimer);
+            clearInterval(progressTimer);
+            goToSlide(currentSlide + dir);
+            if (isPlaying) scheduleNext();
+        }
+
+        // プログレスバー
+        function startProgressBar() {
+            const bar = document.getElementById('progressBar');
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+            clearInterval(progressTimer);
+
+            if (!isPlaying) return;
+
+            // 少し遅らせてトランジション開始
+            setTimeout(() => {
+                bar.style.transition = 'width ' + SLIDE_DURATION + 'ms linear';
+                bar.style.width = '100%';
+            }, 50);
+        }
+
+        // 次のスライドをスケジュール（最後=お礼メールで止める）
+        function scheduleNext() {
+            clearTimeout(slideshowTimer);
+            slideshowTimer = setTimeout(() => {
+                const next = currentSlide + 1;
+                if (next >= TOTAL_SLIDES) {
+                    // 最後のスライド（お礼メール）で停止
+                    goToSlide(TOTAL_SLIDES - 1);
+                    isPlaying = false;
+                    document.getElementById('progressBar').style.transition = 'none';
+                    document.getElementById('progressBar').style.width = '0%';
+                    document.getElementById('pauseIcon').style.display = 'none';
+                    document.getElementById('playIcon').style.display = 'block';
+                    return;
+                }
+                goToSlide(next);
+                if (isPlaying) scheduleNext();
+            }, SLIDE_DURATION);
+        }
+
+        // お礼ページかどうか判定
+        function isOnLastSlide() {
+            return currentSlide === TOTAL_SLIDES - 1;
+        }
+
+        // スライドショー 再生/一時停止
+        // お礼ページ（最終スライド）でPlayを押したら最初に戻る
+        function toggleSlideshow() {
+            if (isOnLastSlide() && !isPlaying) {
+                // 最初に戻る
+                restartAlbum();
+                return;
+            }
+            if (isPlaying) {
+                isPlaying = false;
+                clearTimeout(slideshowTimer);
+                clearInterval(progressTimer);
+                document.getElementById('progressBar').style.transition = 'none';
+                bgMusic.pause();
+                document.getElementById('pauseIcon').style.display = 'none';
+                document.getElementById('playIcon').style.display = 'block';
+            } else {
+                isPlaying = true;
+                bgMusic.play().catch(() => {});
+                document.getElementById('pauseIcon').style.display = 'block';
+                document.getElementById('playIcon').style.display = 'none';
+                startProgressBar();
+                scheduleNext();
+            }
+        }
+
+        // 最初のオーバーレイに戻る
+        function restartAlbum() {
+            // スライドを先頭に戻す
+            goToSlide(0);
+            // 音楽停止
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+            isPlaying = false;
+            slideshowStarted = false;
+            document.getElementById('progressBar').style.transition = 'none';
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('pauseIcon').style.display = 'none';
+            document.getElementById('playIcon').style.display = 'block';
+            // オーバーレイを再表示
+            const overlay = document.getElementById('musicStartOverlay');
+            overlay.style.display = 'flex';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.transition = 'opacity 0.8s ease';
+                overlay.style.opacity = '1';
+            }, 50);
+        }
+
+        // アルバム開始（オーバーレイから）
+        function startAlbum() {
+            const overlay = document.getElementById('musicStartOverlay');
+
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                document.getElementById('pauseIcon').style.display = 'block';
+                document.getElementById('playIcon').style.display = 'none';
+            }).catch(() => {
+                isPlaying = true;
+            });
+
+            overlay.style.transition = 'opacity 0.8s ease';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                startProgressBar();
+                scheduleNext();
+                slideshowStarted = true;
+            }, 800);
+        }
+
+        // キーボードナビゲーション
+        document.addEventListener('keydown', (e) => {
+            if (!slideshowStarted) return;
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === ' ') { e.preventDefault(); toggleSlideshow(); }
+        });
+
+        // 落ちる黄色い星（★形）
+        function createFallingStar() {
+            const star = document.createElement('div');
+            star.className = 'falling-star';
+            const size = Math.random() * 14 + 10; // 10〜24px
+            const duration = Math.random() * 4 + 5; // 5〜9秒
+            const yellows = [
+                'rgba(255,230,60,0.95)',
+                'rgba(255,210,40,0.9)',
+                'rgba(255,245,120,0.95)',
+                'rgba(255,200,30,0.85)'
+            ];
+            const color = yellows[Math.floor(Math.random() * yellows.length)];
+            star.style.left = Math.random() * 100 + '%';
+            star.style.fontSize = size + 'px';
+            star.style.color = color;
+            star.style.textShadow = `0 0 ${size}px rgba(255,200,50,0.8), 0 0 ${size*2}px rgba(255,180,30,0.4)`;
+            star.style.animationDuration = duration + 's';
+            star.style.animationDelay = (Math.random() * 2) + 's';
+            star.textContent = '★';
+            document.body.appendChild(star);
+            setTimeout(() => star.remove(), (duration + 2.5) * 1000);
+        }
+
+        // キラキラ輝く星（大きめ・白〜紫）
+        function createTwinkleStar() {
+            const star = document.createElement('div');
+            star.className = 'twinkle-star';
+            const size = Math.random() * 16 + 8; // 8〜24px（大きく）
+            const duration = Math.random() * 2.5 + 1.5;
+            const colors = [
+                { c: 'rgba(255,255,255,0.95)', g: 'rgba(255,255,255,0.5)' },
+                { c: 'rgba(220,200,255,0.95)', g: 'rgba(180,150,255,0.5)' },
+                { c: 'rgba(180,210,255,0.95)', g: 'rgba(140,180,255,0.5)' },
+                { c: 'rgba(255,245,160,0.95)', g: 'rgba(255,220,80,0.5)' }
+            ];
+            const col = colors[Math.floor(Math.random() * colors.length)];
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.fontSize = size + 'px';
+            star.style.color = col.c;
+            star.style.textShadow = `0 0 ${size}px ${col.g}, 0 0 ${size*2}px ${col.g}`;
+            star.style.animationDuration = duration + 's';
+            star.style.animationDelay = (Math.random() * 1.5) + 's';
+            star.textContent = '✦';
+            document.body.appendChild(star);
+            setTimeout(() => star.remove(), (duration + 2) * 1000);
+        }
+
+        setInterval(createFallingStar, 800);
+        setInterval(createTwinkleStar, 250);
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            buildIndicators();
+        });
+    </script>
+</body>
+</html>
